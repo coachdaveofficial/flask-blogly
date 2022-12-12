@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  <!-- <link rel="stylesheet" href="/static/css/styles.css"> -->
+  <script src="http://unpkg.com/jquery"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <h1>{% block h1 %}{% endblock %}</h1>
+  {% block content %}{% endblock %}
+
+</body>
+</html>

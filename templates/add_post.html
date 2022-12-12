@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block h1 %} Add Post for {{user.full_name}} {% endblock %} 
+
+{% block content %}
+
+<div class="post-form">
+    <form action="/users/{{user.id}}/post" method="POST">
+        <div class="create-user">
+            <label for="title-input">Title</label>
+            <input type="text" id="title" name="title">
+        </div>
+
+        <div class="create-user">
+            <label for="content-input">Content</label>
+            <input type="text" id="content" name="content">
+        </div>
+
+
+        <button type="submit">Add</button>
+    </form>
+
+    <form action="/users/{{user.id}}/details">
+        <button type="submit">Cancel</button>
+    </form>
+    <form action="/">
+        <button class="home-button"type="submit">Home</button>
+    </form>
+</div>
+
+{% endblock %}

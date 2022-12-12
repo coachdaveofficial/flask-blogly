@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block h1 %} Edit Post {% endblock %} 
+
+{% block content %}
+
+<div class="edit-form">
+    <form action="/post/{{post.id}}/edit/submit">
+        <div class="edit-user">
+            <label for="title-input">Title</label>
+            <input type="text" placeholder="{{post.title}}" id="edit-title" name="title">
+        </div>
+
+        <div class="edit-user">
+            <label for="content-input">Content</label>
+            <input type="text" placeholder="{{post.content}}" id="edit-content" name="content">
+        </div>
+
+        <button type="submit">Update</button>
+
+    </form>
+    <form action="/">
+        <button class="home-button"type="submit">Home</button>
+    </form>
+</div>
+
+{% endblock %}
