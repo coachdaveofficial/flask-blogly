@@ -1,31 +1,38 @@
 {% extends 'base.html' %} 
 
-{% block h1 %} Create User {% endblock %}
+{% block h1 %}
+    Create User
+{% endblock %}
+{% block home_button %} 
+    <a href="/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16" aria-label="Home Icon">
+            <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z"/>
+          </svg>
+    </a>
+{% endblock %}
+
+
 
 {% block content %}
-<div class="create-form">
+<div class="container">
     <form action="/users/new" method="POST">
-        <div class="create-user">
-            <label for="first-name-input">First Name</label>
-            <input type="text" placeholder="Enter a first name" id="first-name-input" name="first_name">
+        <div class="mb-3">
+            <label for="first-name-input" class="form-label">First Name</label>
+            <input type="text" class='form-control' placeholder="Enter a first name" name="first_name">
         </div>
-
-        <div class="create-user">
-            <label for="last-name-input">Last Name</label>
-            <input type="text" placeholder="Enter a last name" id="last-name-input" name="last_name">
+        <div class="mb-3">
+          <label for="last-name-input" class="form-label">Last Name</label>
+          <input type="text" placeholder="Enter a last name" class="form-control" name="last_name">
         </div>
-
-        <div class="create-user">
-            <label for="profile-pic-input">Image URL</label>
-            <input type="text" placeholder="Provide an image of this user" id="profile-pic-input" name="image_source">
+        <div class="mb-3">
+            <label for="profile-pic-input" class="form-label">Image URL</label>
+            <input type="text" placeholder="Enter a profile picture" class="form-control" name="image_source">
         </div>
-
-        <button type="submit">Add</button>
-
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    <form action="/">
-        <button class="home-button"type="submit">Home</button>
-    </form>
+      
 </div>
+
+
 
 {% endblock %}

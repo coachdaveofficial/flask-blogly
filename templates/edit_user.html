@@ -2,30 +2,35 @@
 
 {% block h1 %} Edit A User {% endblock %}
 
+
+
 {% block content %}
-<div class="edit-form">
-    <form action="/users/{{user.id}}/edit/submit">
-        <div class="edit-user">
-            <label for="first-name-input">First Name</label>
-            <input type="text" placeholder="{{user.first_name}}" id="edit-first-name" name="first_name">
-        </div>
 
-        <div class="edit-user">
-            <label for="last-name-input">Last Name</label>
-            <input type="text" placeholder="{{user.last_name}}" id="edit-last-name" name="last_name">
-        </div>
 
-        <div class="edit-user">
-            <label for="profile-pic-input">Image URL</label>
-            <input type="text" placeholder="{{ user.image_url }}" id="edit-profile-pic" name="image_source">
-        </div>
+<div class="container mt-4">
+    <div class="row">
+        <form action="/users/{{user.id}}/edit/submit">
+            <div class="col mb-2 input-group">
+                <span class="input-group-text">First Name</span>
+                <input type="text" class="form-control" placeholder="{{user.first_name}}" name="first_name">
+            </div>
+            <div class="col mb-2 input-group">
+                <span class="input-group-text">Last Name</span>
+                <input type="text" class="form-control" placeholder="{{user.last_name}}" name="last_name">
+            </div>
+            <div class="col mb-2 input-group">
+                <span class="input-group-text">Image URL</span>
+                <input type="text" class="form-control" placeholder="{{user.image_url}}" name="image_source">
+            </div>
+    
+            <br>
+            
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Update</button>
 
-        <button type="submit">Update</button>
-
-    </form>
-    <form action="/">
-        <button class="home-button"type="submit">Home</button>
-    </form>
+                <a href="/users/{{user.id}}/details" class="btn btn-danger">Cancel</a>
+            </div>    
+        </form>
+    </div>
 </div>
-
 {% endblock %}

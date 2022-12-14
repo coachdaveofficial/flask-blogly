@@ -1,21 +1,43 @@
 {% extends 'base.html' %}
 
 {% block title %} Users {% endblock %}
-{% block h1 %} Users {% endblock %}
+
+
+{% block h1 %}
+
+    <div class="col">
+        Users
+    </div>
+
+   
+{% endblock %}
+
+
+
+
+
 
 {% block content %}
-<ul>
-    {% for user in users %}
-    <li>
-        <a href="/users/{{user.id}}/details">
-            {{ user.first_name }} {{user.last_name}}
-        </a>
-    </li>
-    {% endfor %}
-  </ul>
+<div class="container">
+    <div class="col-4 mt-4">
+        <div class="list-group">
+            {% for user in users %}
+            
+                <a href="/users/{{user.id}}/details" class="list-group-item list-group-item-action">
+                    {{ user.first_name }} {{user.last_name}}
+                </a>
+            
+            {% endfor %}
+        </div>
+    </div>
+    
 
-<form action="/users/new">
-    <button type="submit">Create User</button>
-</form>
+    <div class="col">
+        <form action="/users/new">
+            <button type="submit" class="btn btn-primary mt-4">Create User</button>
+        </form>
+    </div>
+    
+</div>
 
 {% endblock %}

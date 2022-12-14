@@ -2,30 +2,40 @@
 
 {% block h1 %} Add Post for {{user.full_name}} {% endblock %} 
 
+{% block home_button %} 
+    <a href="/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16" aria-label="Home Icon">
+            <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z"/>
+          </svg>
+    </a>
+{% endblock %}
+
 {% block content %}
 
-<div class="post-form">
-    <form action="/users/{{user.id}}/post" method="POST">
-        <div class="create-user">
-            <label for="title-input">Title</label>
-            <input type="text" id="title" name="title">
-        </div>
+<div class="container mt-4">
+    <div class="row">
+        <form action="/users/{{user.id}}/post" method="POST">
+            <div class="col input-group">
+                <span class="input-group-text">Title</span>
+                <input type="text" class="form-control" name="title">
+            </div>
+    
+            <br>
+            
+            <div class="col input-group">
+                <span class="input-group-text">Content</span>
+                <textarea class="form-control" aria-label="Content" name="content"></textarea>
+            </div>
 
-        <div class="create-user">
-            <label for="content-input">Content</label>
-            <input type="text" id="content" name="content">
-        </div>
+            <br>
+            
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Add</button>
 
-
-        <button type="submit">Add</button>
-    </form>
-
-    <form action="/users/{{user.id}}/details">
-        <button type="submit">Cancel</button>
-    </form>
-    <form action="/">
-        <button class="home-button"type="submit">Home</button>
-    </form>
+                <a href="/users/{{user.id}}/details" class="btn btn-danger">Cancel</a>
+            </div>    
+        </form>
+    </div>
 </div>
 
 {% endblock %}

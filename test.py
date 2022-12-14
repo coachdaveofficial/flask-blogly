@@ -24,12 +24,12 @@ class FlaskTests(TestCase):
             db.session.expire_on_commit = False
 
             user = User(first_name='unit', last_name='test', image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png')
-            bad_user = User(first_name='bad', last_name='user')
+            user_without_post = User(first_name='bad', last_name='user')
             db.session.add(user)
-            db.session.add(bad_user)
+            db.session.add(user_without_post)
             db.session.commit()
             self.user_id = user.id
-            self.bad_user_id = bad_user.id
+            self.user_without_post_id = user_without_post.id
 
             post = Post(title='test title', content='test content', user_id=self.user_id)
             db.session.add(post)
@@ -40,6 +40,10 @@ class FlaskTests(TestCase):
         with app.app_context():
             db.session.rollback()
 
+    def test_full_name(self):
+        user = User(first_name='full', last_name='name')
+        self.assertEqual(user.full_name, "full name")         
+
     # test that home page loads
     def test_home_page(self):
         with app.test_client() as client:
@@ -47,7 +51,8 @@ class FlaskTests(TestCase):
             html = resp.get_data(as_text=True)
 
             self.assertEqual(resp.status_code, 200)
-            self.assertIn('<button type="submit">Create User</button>', html)
+            # self.assertIn('<button type="submit">Create User</button>', html)
+            self.assertIn('<div class="col">\n        Users\n    </div>', html)
     
     def test_user_details(self):
 
@@ -57,11 +62,11 @@ class FlaskTests(TestCase):
             html = resp.get_data(as_text=True)
 
             # created second user who has not made any posts
-            bad_resp = client.get(f"users/{self.bad_user_id}/details")
-            bad_html = bad_resp.get_data(as_text=True)
+            no_post_resp = client.get(f"users/{self.user_without_post_id}/details")
+            no_post_html = no_post_resp.get_data(as_text=True)
             
             # check to make sure posts do not show up for bad user
-            self.assertNotIn('test title', bad_html)
+            self.assertNotIn('test title', no_post_html)
 
             self.assertEqual(resp.status_code, 200)
             self.assertIn('unit test', html)
