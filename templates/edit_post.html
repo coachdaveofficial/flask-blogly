@@ -7,7 +7,8 @@
 
 <div class="container mt-4">
     <div class="row">
-        <form action="/post/{{post.id}}/edit/submit">
+        <form action="/post/{{post.id}}/edit/" method="POST">
+        <!-- <form action="/post/{{post.id}}/edit/submit"> -->
             <div class="col mb-2 input-group">
                 <span class="input-group-text">Title</span>
                 <input type="text" class="form-control" placeholder="{{post.title}}" name="title">
@@ -16,6 +17,38 @@
                 <span class="input-group-text">Content</span>
                 <input type="text" class="form-control" placeholder="{{post.content}}" name="content">
             </div>
+
+
+            <div class="form-check">
+                {% for tag in tags %}
+                <div>
+                  <input class="form-check-input"
+                         type="checkbox"
+                         value="{{ tag.id }}"
+                         id="tag_{{ tag.id }}"
+                         {% if tag in post.tags %}checked{% endif %}
+                         name="tags">
+                  <label class="form-check-label" for="tag_{{ tag.id }}">
+                    {{ tag.name }}
+                  </label>
+                </div>
+                {% endfor %}
+              </div>
+
+
+
+
+
+
+
+            <!-- {% for tag in post.tags %} 
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="{{tag.name}}" name="tag" id="flexCheckDefault" checked>
+                    <label class="form-check-label" for="flexCheckDefault">
+                    {{tag.name}}
+                    </label>
+                </div>
+            {% endfor %} -->
 
             <br>
             

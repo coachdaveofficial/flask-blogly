@@ -22,10 +22,21 @@
     
             <br>
             
-            <div class="col input-group">
+            <div class="col input-group mb-4">
                 <span class="input-group-text">Content</span>
                 <textarea class="form-control" aria-label="Content" name="content"></textarea>
             </div>
+            
+            
+            {% for tag in tags %} 
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="{{tag.name}}" name="tag" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                    {{tag.name}}
+                    </label>
+                </div>
+            {% endfor %}
+            
 
             <br>
             

@@ -16,11 +16,26 @@
 
     <h4 class="mb-4"><i>By {{user.full_name}}</i></h4>
 
-    <a href="/users/{{post.user_id}}/details" class="btn btn-secondary">Back</a>
-
-    <a href="/post/{{post.id}}/edit" class="btn btn-primary">Edit</a>
-
-    <a href="/post/{{post.id}}/delete" class="btn btn-danger">Delete</a>
+    <div class="row">
+        <div class="col mb-4">
+            {% for tag in post.tags %}
+                <span class="badge bg-primary rounded-pill float-start mx-1">{{tag.name}}</span>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a href="/users/{{post.user_id}}/details" class="btn btn-secondary">Author Details</a>
+    
+            <a href="/post/{{post.id}}/edit" class="btn btn-primary">Edit</a>
+    
+            <a href="/post/{{post.id}}/delete" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+    
+    
+    
+    
 
 
 </div>

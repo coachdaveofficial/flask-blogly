@@ -15,6 +15,7 @@ def connect_db(app):
     db.app = app
     db.init_app(app)
 
+
 class User(db.Model):
     """User"""
 
@@ -45,7 +46,28 @@ class Post(db.Model):
     created_at = db.Column(db.String(), nullable=True, default= now.strftime("%d/%m/%Y %H:%M:%S"))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-    # owner = db.relationship('User')
 
 
+class Tag(db.Model):
+    """Tag"""
+
+    __tablename__ = 'tags'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(25), nullable=False, unique=True)
+
+    posts = db.relationship(
+        'Post',
+        secondary="posts_tags",
+        cascade="all,delete",
+        backref="tags",
+    )
+
+class PostTag(db.Model):
+    """Post and Tag Join"""
+
+    __tablename__ = 'posts_tags'
+
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), primary_key=True)
+    tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'), primary_key=True)
 
