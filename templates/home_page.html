@@ -1,0 +1,51 @@
+{% extends 'base.html' %} 
+
+{% block h1 %}
+    Blogly Home Page
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="container">
+
+    {% if posts|length == 0 %}
+        <br>
+        <h3>Looks like there are no posts yet!</h3>
+
+    {% else %} 
+
+        {% for post in posts %}
+            <div class="card my-4" style="width: 25rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{post.title}}</h5>
+                    <p class="card-text">{{ post.content }}</p>
+                </div>
+                
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col mb-4">
+                            {% for tag in post.tags %}
+                                <span class="badge bg-primary rounded-pill float-start mx-1">{{tag.name}}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                
+                    {% for user in users %}
+                        {% if user.id == post.user_id %}
+                            <span>By </span>
+                            <a href="/users/{{user.id}}/" class="card-link">{{ user.full_name }}</a>
+                            <span>on {{post.friendly_date}}</span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+      
+</div>
+
+
+
+{% endblock %}

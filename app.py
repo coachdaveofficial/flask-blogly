@@ -21,7 +21,15 @@ with app.app_context():
 
     db.create_all()
 
+
 @app.route('/')
+def home_page():
+    users = User.query.all()
+    posts = Post.query.all()
+
+    return render_template('home_page.html', posts=posts, users=users)
+
+@app.route('/users/')
 def list_users():
     """List users"""
 
@@ -53,7 +61,7 @@ def create_user():
         db.session.add(user)
         db.session.commit()
 
-        return redirect('/')
+        return redirect('/users')
 
 @app.route('/users/<int:user_id>/post/', methods=['POST', 'GET'])
 def add_post(user_id):

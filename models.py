@@ -43,9 +43,17 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(50), nullable=False)
     content = db.Column(db.String(150), nullable=False)
-    created_at = db.Column(db.String(), nullable=True, default= now.strftime("%d/%m/%Y %H:%M:%S"))
+    created_at = db.Column(
+        db.DateTime,
+        nullable=False,
+        default=now)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
+    @property
+    def friendly_date(self):
+        """Return nicely-formatted date."""
+
+        return self.created_at.strftime("%a %b %-d  %Y, %-I:%M %p")
 
 
 class Tag(db.Model):

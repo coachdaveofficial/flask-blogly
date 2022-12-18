@@ -21,13 +21,17 @@
 <div class="container">
     <div class="col-4 mt-4">
         <div class="list-group">
-            {% for user in users %}
-            
-                <a href="/users/{{user.id}}/details" class="list-group-item list-group-item-action">
-                    {{ user.first_name }} {{user.last_name}}
-                </a>
-            
-            {% endfor %}
+
+            {% if users|length == 0 %}
+                No users yet!
+            {% else %}
+                {% for user in users %}
+
+                    <a href="/users/{{user.id}}/details" class="list-group-item list-group-item-action">
+                        {{ user.first_name }} {{user.last_name}}
+                    </a>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
     

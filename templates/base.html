@@ -8,16 +8,35 @@
   
 </head>
 <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid mt-0">
+    
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item mx-1">
+                <a class="nav-link btn btn-outline-secondary" aria-current="page" href="/">Home</a>
+              </li>
+             <li class="nav-item mx-1">
+                <a class="nav-link btn btn-outline-secondary" aria-current="page" href="/users/">Users</a>
+             </li>
+            <li class="nav-item mx-1">
+                <a class="nav-link btn btn-outline-secondary" href="/tags/">Tags</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
   <h1>
-    <div class="container-fluid text-light bg-dark">
+    <div class="container-fluid">
       <div class="row justify-content-between">
         <div class="col">
           {% block h1 %}{% endblock %}
        
         
-          <div class="float-end">
+          <!-- <div class="float-end">
             {% block home_button %}{% endblock %}
-          </div>
+          </div> -->
 
       </div>
         
